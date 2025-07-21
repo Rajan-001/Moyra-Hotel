@@ -1,0 +1,133 @@
+@import "tailwindcss";
+
+@keyframes scroll {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+.scroll-track {
+
+  animation: scroll 20s linear infinite;
+}
+
+
+
+
+
+.scroll-main1-track {
+  
+  animation: scroll 20s linear infinite;
+}
+.scroll-main2-track {
+  
+  animation: scroll 20s linear infinite;
+}
+
+@keyframes scrollu {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+.mask-img {
+  mask-image: url("/Svg/svg-red-logo.svg");
+  -webkit-mask-image: url("/Svg/Logo.svg");
+  mask-size: 100% 100%;
+  -webkit-mask-size: 100% 100%;
+  mask-repeat: no-repeat;
+  -webkit-mask-repeat: no-repeat;
+  mask-position: center;
+  -webkit-mask-position: center;
+}
+
+.Sample__container__content {
+  display: flex;
+  max-width: 100%;
+  flex-basis: 420px;
+  flex-direction: column;
+  flex-grow: 100;
+  align-items: stretch;
+  padding-top: 1em;
+}
+.react-calendar__navigation{
+width: 100%;
+display: flex;
+align-items: center;
+justify-content: space-between;
+padding: 6px 10px;
+font: 1.2em sans-serif;
+gap: 15px;
+
+}
+.react-calendar__navigation :hover{
+  cursor: pointer;
+}
+.react-calendar__month-view__weekdays *{
+  display: none;
+}
+.react-calendar__viewContainer{
+  height: 80%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  place-content: center;
+  font-size: 14px;
+  font-weight: 500;
+  gap: 1px;
+}
+
+
+.react-calendar__month-view__days  :hover{
+background: #fef9d2;
+color:  #000 ;
+border-radius: 40%;
+cursor: pointer;
+scale: 1.2;
+transition-duration: 2ms;
+} 
+.react-calendar__tile react-calendar__month-view__days__day{
+  font-size: 12px;
+   padding: 2px;
+}
+
+.react-calendar__month-view__days button{
+  gap: 1px;
+}
+
+.react-calendar__tile--now {
+  background: #ffff76;
+  border-radius: 50%;
+  color: rgb(50, 50, 50);
+ z-index: 0;
+}
+
+.react-calendar__tile:disabled {
+  color: #3b3b3b ;
+  cursor:no-drop;
+  pointer-events: none;
+}
+
+.react-calendar__tile:disabled * {
+  cursor:no-drop;
+ 
+}
+
+
+
+.react-calendar--selectRange .react-calendar__tile--hover {
+  background: #fef9d2;
+  z-index: 2;
+  color: #3b3b3b;
+  scale: .9;
+  border-radius: 1px;
+  scale: 1.2;
+ 
+}
