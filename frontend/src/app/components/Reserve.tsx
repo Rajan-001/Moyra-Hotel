@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { use, useEffect, useState } from 'react'
 import Image from 'next/image'
 import { Button } from './Button'
 import Calendar from 'react-calendar'
@@ -14,9 +14,32 @@ export const Reserve = ({clickFunction}) => {
   const[open,setOpen]=useState(false);
    const [value, onChange] = useState<Value>(null);
   console.log(value)
+  const [hotels, setAllHotels] = useState<any[]>([]);
+  const [loaded,setLoaded]=useState(false)
+  const[selectHotel,setHotel]=useState(1);
+ useEffect(() => {
+  async function fetchHotels() {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/get-hotels`);
+    const data = await response.json();
+    setHotel(1)
+    setAllHotels(data);
+    setLoaded(true);
+  }
+  fetchHotels();
+}, []); 
+
+useEffect(() => {
+  async function fetchHotelDetail() {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/hotels/${selectHotel}`);
+    const detail = await response.json();
+    console.log("Selected hotel detail:", detail);
+  }
+  fetchHotelDetail();
+}, [selectHotel]); 
+
   return (
       <div className='absolute  top-0 right-0 w-[500px] h-[calc(100vh-50px)] mr-1.5  z-10 rounded-[60px]  bg-neutral-700 scale-102'>
-          
+          { loaded &&
           <div className='px-8 py-4 h-full w-full '>
           <Image onClick={clickFunction} className='w-6 rotate-45 z-12 h-6 p-1  rounded-full bg-yellow-100' src={'/Svg/cross-sign.svg'} alt={''} width={20} height={20} />
            <div>
@@ -31,18 +54,16 @@ export const Reserve = ({clickFunction}) => {
               (1) Which capsule you would like to reserve?
              </div>
              <div className='w-full mt-4  grid grid-cols-3 gap-1  text-[10px] text-yellow-50'>
-              <div className='h-36 w-36 rounded-3xl bg-stone-900 text-center '>
+              {  hotels.map((x,i)=>(
+
+              <div key={i} onClick={()=>{setHotel(i+1)}} className='h-36 w-36 rounded-3xl bg-stone-900 text-center hover:bg-yellow-100 hover:text-stone-900 cursor-pointer'>
                 <Image unoptimized className='px-1.5 py-1 w-full h-3/4 rounded-3xl object-cover' src={'/Images/cap1.png'} alt={''} width={22} height={20}/>
-                 <div className='mt-1.5'>Classic C®</div>
+                 <div className='mt-1.5'>{x.hotel_name}</div>
               </div> 
-              <div className='h-36 w-36 rounded-3xl bg-stone-900 text-center '>
-                <Image unoptimized className='px-2 py-1 w-full h-3/4 rounded-3xl object-cover' src={'/Images/cap1.png'} alt={''} width={22} height={20}/>
-                 <div className='mt-1.5'>Classic C®</div>
-              </div> 
-              <div className='h-36 w-36 rounded-3xl bg-stone-900 text-center '>
-                <Image unoptimized className='px-2 py-1 w-full h-3/4 rounded-3xl object-cover' src={'/Images/cap1.png'} alt={''} width={22} height={20}/>
-                 <div className='mt-.5'>Classic C®</div>
-              </div> 
+            
+              )
+            )
+               }
              </div>
 
                  <div>
@@ -74,16 +95,14 @@ export const Reserve = ({clickFunction}) => {
                   Cost <br/>
                   10000 USD
                 </div>
-                <motion.div initial={{opacity:0,width:0}} animate={{opacity:1,width:"100%"}} transition={{delay:.6}} className='flex  justify-center'>
+                <motion.div initial={{opacity:0,width:0}} animate={{opacity:1,width:"100%"}} transition={{delay:.6}} className='flex justify-center'>
                   <Button clickfunction={()=>setOpen(x=>!x)} positon={'bottom-2 '} text={'Next'} imageSrc={'/Svg/right-arrow.svg'}/>
                 </motion.div>
               </div>
              </motion.div>
 
          </div>
-
-        
-          
+              }
         </div> 
   )
 }
