@@ -6,7 +6,7 @@
 
 generator client {
   provider = "prisma-client-js"
-  output   = "../src/generated/prisma"
+  // output   = "../src/generated/prisma"
 }
 
 datasource db {
@@ -17,9 +17,12 @@ datasource db {
 
 model User{
   id Int @id @default(autoincrement())
-  username String
-  password String
   booking Booking[]
+   name String 
+  password String?
+  email String?
+   provider String?
+  upadatedAt DateTime @updatedAt
 }
 
 model Places{
