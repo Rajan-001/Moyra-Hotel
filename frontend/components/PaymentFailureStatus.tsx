@@ -2,9 +2,8 @@ import router from 'next/router'
 import React from 'react'
 import { IoIosCloseCircleOutline } from 'react-icons/io'
 
-type Props = {}
 
-export const PaymentFailureStatus = (props: Props) => {
+export const PaymentFailureStatus = () => {
   return (
    <div className='w-screen h-screen flex justify-center items-center '>
        <button

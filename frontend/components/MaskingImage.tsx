@@ -1,8 +1,8 @@
 import React from 'react'
 import Image from 'next/image'
-type Props = {}
 
-export const MaskingImage = (props: Props) => {
+
+export const MaskingImage = () => {
   return (
     <div className="w-screen h-screen bg-white grid place-content-center">
      <div className="w-94 h-24 rounded-[45px] relative border-amber-100 p-2 border-2">
