@@ -14,8 +14,10 @@ const crypto = require('crypto');
 
 const app=express()
 app.use(express.json())
+const FRONTEND_URL = process.env.FRONTEND_URL || "http://localhost:3000"
 app.use(cors({
-  origin: "http://localhost:3000", // allow frontend URL
+  origin: FRONTEND_URL, // allow frontend URL
+
   credentials: true
 }));
 dotenv.config();
