@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+     "build": "npm install && npx tsc",
     "dev": "npx tsc && node dist/index.js"
   },
   "keywords": [],
