@@ -17,9 +17,9 @@ export const authOptions: NextAuthOptions =({
       },
     }),
     Twitter({
-   // eslint-disable-next-line turbo/no-undeclared-env-vars
+    //@ts-ignore
    clientId: process.env.AUTH_TWITTER_ID!,
-      // eslint-disable-next-line turbo/no-undeclared-env-vars
+     //@ts-ignore
       clientSecret: process.env.AUTH_TWITTER_SECRET!,
       version: "2.0" 
     })
