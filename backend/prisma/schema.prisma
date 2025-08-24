@@ -23,6 +23,8 @@ model User{
   email String?
    provider String?
   upadatedAt DateTime @updatedAt
+
+  Payments Payments[]
 }
 
 model Places{
@@ -42,10 +44,44 @@ model Hotels{
 
 model Booking{
   id Int @id @default(autoincrement())
-  checkIn DateTime
-  checkOut DateTime
-   hotel_id Int
-  Hotels Hotels @relation(fields: [hotel_id],references: [hotel_id])
-   userId Int
-   users User@relation(fields: [userId],references: [id])
+  checkIn     DateTime
+  checkOut    DateTime 
+   time       Int
+   currency   String
+   hotel_id   Int
+   amount     Int
+   booking_id String@unique
+   receipt   String
+    status   Status @default(pending)
+  Hotels     Hotels @relation(fields: [hotel_id],references: [hotel_id])
+   userId    Int
+   users     User@relation(fields: [userId],references: [id])
+
+   Payments Payments[]
 }
+
+model Payments {
+  id                Int       @id @default(autoincrement())
+  orderId           String @unique
+  razorpay_payment_id String   @unique
+  razorpay_signature String?
+  status            Status @default(pending) // SUCCESS, REFUNDED, FAILED
+  paymentDate       DateTime  @default(now())
+  razorpay_order_id String    @unique
+  order Booking @relation(fields: [orderId], references: [booking_id])
+  userId    Int  
+  UserInfo User @relation(fields: [userId],references: [id])
+
+}
+
+
+enum Status {
+  pending
+  success
+  failed
+  created
+  attempted
+  paid
+}
+
+

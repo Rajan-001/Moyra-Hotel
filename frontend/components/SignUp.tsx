@@ -21,11 +21,15 @@ export default function SignUp({setSignUpModal,setLoginModal}) {
       });
 
       const data = await res.json();
+      console.log(res.ok)
       if (!res.ok) {
         alert(data.error || "Signup failed");
         return;
       }
+      else{
+      setSignUpModal(false)
      setLoginModal(true)
+      }
      
     } catch (error) {
       console.error(error);
@@ -98,7 +102,7 @@ export default function SignUp({setSignUpModal,setLoginModal}) {
             onChange={(e) => setEmail(e.target.value)}
             type="email" 
             placeholder="you@example.com" 
-            className="w-full p-4 pl-8 border text-2xl border-slate-200/30 text-slate-900 rounded-xl bg-white/90 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-300 focus:bg-white transform transition-all duration-300 focus:translate-y-[-2px] shadow-sm placeholder:text-slate-400 outline-none"
+            className="w-full p-3 pl-6 border  border-slate-200/30 text-slate-900 rounded-xl bg-white/90 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-300 focus:bg-white transform transition-all duration-300 focus:translate-y-[-2px] shadow-sm placeholder:text-slate-400 outline-none"
           />
         </div>
 

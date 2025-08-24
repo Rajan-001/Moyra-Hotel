@@ -16,17 +16,31 @@ exports.middleware = middleware;
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 function middleware(req, res, next) {
     return __awaiter(this, void 0, void 0, function* () {
-        var _a;
-        const token = (_a = req.headers["authorization"]) !== null && _a !== void 0 ? _a : "";
-        const decoded = jsonwebtoken_1.default.verify(token, process.env.JWT_key);
-        if (decoded) {
-            //@ts-ignore
-            req.id = decoded.id;
-            next();
+        try {
+            const token = req.cookies.token;
+            if (token != undefined) {
+                const decoded = jsonwebtoken_1.default.verify(token, process.env.JWT_key);
+                if (decoded) {
+                    //@ts-ignore
+                    req.id = decoded.userId;
+                    console.log(decoded);
+                    next();
+                }
+                else {
+                    res.status(411).json({
+                        message: "Token is not validated"
+                    });
+                }
+            }
+            else {
+                res.status(503).json({
+                    message: "Token is undefined"
+                });
+            }
         }
-        else {
-            res.status(411).json({
-                message: "Token is not valida"
+        catch (err) {
+            res.status(503).json({
+                message: "Not able to get token"
             });
         }
     });

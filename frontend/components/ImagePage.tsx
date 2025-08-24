@@ -18,10 +18,18 @@ const fourthText=useRef(null)
     }else if(xPercent > 0){
       xPercent = -100;
     }
-    gsap.set(firstText.current,{xPercent:xPercent})
-     gsap.set(secondText.current,{xPercent:xPercent})
-      gsap.set(thirdText.current,{xPercent:xPercent})
-       gsap.set(fourthText.current,{xPercent:xPercent})
+   const first=firstText.current;
+   const second=secondText.current;
+   const third=thirdText.current;
+   const fourth=fourthText.current;
+   if(first||second||third||fourth)
+   {
+    return
+   }
+    gsap.set(first,{xPercent:xPercent})
+     gsap.set(second,{xPercent:xPercent})
+      gsap.set(third,{xPercent:xPercent})
+       gsap.set(fourth,{xPercent:xPercent})
   xPercent+=-0.2
    requestAnimationFrame(animate);
 
