@@ -353,4 +353,8 @@ app.post("/get-hotel-booking", (req, res) => __awaiter(void 0, void 0, void 0, f
         res.status(503).json(err);
     }
 }));
-app.listen(8000, () => { console.log("server is running at 8000"); });
+// app.listen(8000,()=>{ console.log("server is running at 8000")})
+const PORT = process.env.PORT || 8000;
+app.listen(PORT, () => {
+    console.log(`✅ Backend running on http://localhost:${PORT}`);
+});
