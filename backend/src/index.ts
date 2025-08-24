@@ -36,6 +36,12 @@ app.use(cors({
 
 dotenv.config();
 app.use(cookieParser())
+
+app.get("/api/hello", (req, res) => {
+  res.json({ message: "Hello from backend!" });
+});
+
+
 app.post("/signup",async (req:Request,res:Response)=>{
   
     const parsedData=userSchema.safeParse(req.body)
