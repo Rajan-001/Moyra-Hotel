@@ -15,11 +15,25 @@ const crypto = require('crypto');
 const app=express()
 app.use(express.json())
 const FRONTEND_URL = process.env.FRONTEND_URL || "http://localhost:3000"
-app.use(cors({
-  origin: FRONTEND_URL, // allow frontend URL
+// app.use(cors({
+//   origin: FRONTEND_URL, // allow frontend URL
 
+//   credentials: true
+// }));
+
+
+app.use(cors({
+  origin: (origin, callback) => {
+    if (!origin || origin === FRONTEND_URL) {
+      callback(null, true);
+    } else {
+      console.warn("Blocked CORS request from origin:", origin);
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
   credentials: true
 }));
+
 dotenv.config();
 app.use(cookieParser())
 app.post("/signup",async (req:Request,res:Response)=>{
