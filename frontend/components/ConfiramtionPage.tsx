@@ -10,7 +10,7 @@ export default   function ConfirmationPage  () {
   const[totalTime,setTotalTime]=useState(0)
   const [userName,setUserName]=useState("")
   const[amount,setAmount]=useState(null)
-  
+//@ts-ignore  
     const searchParams = useSearchParams();
 
   const order_Id = searchParams.get("orderId");
@@ -20,7 +20,7 @@ export default   function ConfirmationPage  () {
    if (!order_Id) return; 
     fetchingOrderDetail(order_Id)
 
-   async function fetchingOrderDetail(order_Id)
+   async function fetchingOrderDetail(order_Id:any)
    {
      const response=await fetch(`${process.env.NEXT_PUBLIC_API_URL}/get-hotel-booking`,{
         method:"POST",

@@ -5,7 +5,10 @@ import { useState } from "react";
 import { FcGoogle } from "react-icons/fc";
 import { RiTwitterXFill } from "react-icons/ri";
 
-export default function SignUp({setSignUpModal,setLoginModal}) {
+export default function SignUp({setSignUpModal,setLoginModal}:{
+  setSignUpModal: (value: boolean) => void;
+  setLoginModal: (value: boolean) => void;
+}) {
      const { data: session, status } =  useSession()
      const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -43,6 +46,7 @@ export default function SignUp({setSignUpModal,setLoginModal}) {
     const res=await fetch(`${process.env.NEXT_PUBLIC_API_URL}/social-site-signin`,{
        method:"POST",
        headers:{ "Content-Type": "application/json" },
+       //@ts-expect-error
        body:JSON.stringify({ name:session?.user?.name,email:session?.user?.email ,provider:session?.user?.provider })
     })
  const data = await res.json();

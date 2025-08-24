@@ -5,7 +5,10 @@ import { FcGoogle } from "react-icons/fc";
 import { RiTwitterXFill } from "react-icons/ri";
 
 
-export default function Login({setSignUpModal,setLoginModal}) {
+export default function Login({setSignUpModal,setLoginModal}:{
+  setSignUpModal: (value: boolean) => void;
+  setLoginModal: (value: boolean) => void;
+}) {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");

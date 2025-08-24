@@ -5,13 +5,13 @@ import Calendar from 'react-calendar'
 import { motion } from 'framer-motion'
 import { response } from 'express'
 import { useRouter } from 'next/navigation'
-import ConfirmationPage from './ConfiramtionPage'
+
 // import 'react-calendar/dist/Calendar.css'
 
 type ValuePiece = Date | null;
 
 type Value = ValuePiece | [ValuePiece, ValuePiece];
-export const Reserve = ({clickFunction}) => {
+export const Reserve = ({clickFunction}:{clickFunction:any}) => {
   const date=new Date();
   const[open,setOpen]=useState(false);
   const router = useRouter();

@@ -42,7 +42,7 @@ export const TextReveal = () => {
   )
 }
 
-export function Word({children,progress,range}){
+export function Word({children,progress,range}:{children:any,progress:any,range:any}){
 const opacity=useTransform(progress,range,[0,1])
 const char=children[1]
 
