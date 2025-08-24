@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-     "build": "npm install && prisma generate && npx tsc",
-    "dev": "npx tsc && node dist/index.js"
+     "build": "npm install && npx tsc",
+    "dev": " node dist/index.js"
   },
   "keywords": [],
   "author": "",
