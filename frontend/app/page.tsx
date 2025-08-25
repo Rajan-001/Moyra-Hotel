@@ -1,15 +1,13 @@
 
 "use client"
 
-import SignUpIn from "../components/SignUpIn";
-import Providers from "../components/Providers";
+
+import { LandingPage } from "@/components/LandingPage";
 
 export default function Home() {
   return (
    <>
-   <Providers>
-   <SignUpIn/>
-   </Providers>
+    <LandingPage/>
    </>
   );
 }

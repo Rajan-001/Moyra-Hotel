@@ -69,7 +69,7 @@ export const Reserve = ({clickFunction}:{clickFunction:any}) => {
        
         if(response.status===503){
 
-          router.push("/")
+          router.push("/profile")
         }
         else if(response.status===200){
           const data =await response.json();
