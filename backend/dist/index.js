@@ -24,12 +24,28 @@ const razorpay_1 = __importDefault(require("razorpay"));
 const crypto = require('crypto');
 const app = (0, express_1.default)();
 app.use(express_1.default.json());
+const FRONTEND_URL = process.env.FRONTEND_URL || "http://localhost:3000";
+// app.use(cors({
+//   origin: FRONTEND_URL, // allow frontend URL
+//   credentials: true
+// }));
 app.use((0, cors_1.default)({
-    origin: "http://localhost:3000", // allow frontend URL
+    origin: (origin, callback) => {
+        if (!origin || origin === FRONTEND_URL) {
+            callback(null, true);
+        }
+        else {
+            console.warn("Blocked CORS request from origin:", origin);
+            callback(new Error("Not allowed by CORS"));
+        }
+    },
     credentials: true
 }));
 dotenv_1.default.config();
 app.use((0, cookie_parser_1.default)());
+app.get("/api/hello", (req, res) => {
+    res.json({ message: "Hello from backend!" });
+});
 app.post("/signup", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     var _a, _b, _c, _d;
     const parsedData = validation_1.userSchema.safeParse(req.body);

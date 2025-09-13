@@ -47,6 +47,16 @@ export const Reserve = ({clickFunction}:{clickFunction:any}) => {
       setCost(noOfDays*1000)
     setNumberofDays(noOfDays)
       },[ranges])
+
+      useEffect(()=>{
+       const firstDate=new Date()
+        const day1 = firstDate.getDate(); // 20
+    const month1 = firstDate.toLocaleString("en-US", { month: "short" }); // "Aug"
+    const result1 = `${day1} ${month1}`
+
+       setStartDate(result1)
+       setEndDate(result1)
+      },[])
       
   async function handleSelectRange(value:any){
     setDaterange(value) 
